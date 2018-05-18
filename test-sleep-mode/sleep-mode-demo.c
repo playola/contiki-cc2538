@@ -1,5 +1,5 @@
 /*
-* Author: Pol Layola Izquierdo
+* Author: Pol Layola
 * Date: May 2018
 *
 * Sleep Mode Demo

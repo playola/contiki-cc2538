@@ -1,5 +1,5 @@
 /*
-* Author: Pol Layola Izquierdo
+* Author: Pol Layola
 * Date: May 2018
 *
 * Test Sleep Mode
@@ -10,12 +10,12 @@
 *   @function   configureInterrupts   @return void
 */
 
-#ifndef TEST_SLEEP_MODE
-#define TEST_SLEEP_MODE
+#ifndef TEST_SLEEP_MODE_H
+#define TEST_SLEEP_MODE_H
 
 void configureSleepMode(void);
 void enableSleepMode(void);
 void disableSleepMode(void);
 void configureInterrupts(void);
 
-#endif /* TEST_SLEEP_MODE */
+#endif /* TEST_SLEEP_MODE_H */

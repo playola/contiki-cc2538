@@ -1,5 +1,5 @@
 /*
-* Author: Pol Layola Izquierdo
+* Author: Pol Layola
 * Date: May 2018
 *
 * Test Sensor
@@ -8,10 +8,10 @@
 *   @function   getSensorValue  @return unsigned char
 */
 
-#ifndef PRESSURE_SENSOR
-#define PRESSURE_SENSOR
+#ifndef PRESSURE_SENSOR_H
+#define PRESSURE_SENSOR_H
 
 void configurePins(void);
 unsigned char getSensorValue(void);
 
-#endif /* PRESSURE_SENSOR */
+#endif /* PRESSURE_SENSOR_H */
