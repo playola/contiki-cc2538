@@ -18,5 +18,5 @@ Configure and Read a GPIO from CC2538 using Contiki and external sensor.
 *** Developing *** Configure and Read a GPIO from CC2538 using interrupts and sleep mode.
 An external sensor will generate the interrupts.
 
-### Test CoAP
-*** Developing *** CoAP client and server using a 802.15.4 network.
+### Test CoAP Server
+*** Developing *** CoAP server using a 802.15.4 network.
