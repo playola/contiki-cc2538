@@ -20,7 +20,7 @@
 #define PRINT6ADDR(addr)
 #define PRINTLLADDR(addr)
 
-extern resource_t res_event
+extern resource_t res_event;
 #if PLATFORM_HAS_LEDS
   extern resource_t res_toggle;
 #endif

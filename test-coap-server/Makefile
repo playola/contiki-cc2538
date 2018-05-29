@@ -2,8 +2,6 @@ all: coap-server
 
 CONTIKI = ../..
 
-CFLAGS += -DPROJECT_CONF_H=\"project-conf.h\"
-
 # Automatically build RESTful resources
 REST_RESOURCES_DIR = ./resources
 ifndef TARGET
@@ -12,7 +10,7 @@ else
 ifeq ($(TARGET), native)
 REST_RESOURCES_FILES = $(notdir $(shell find $(REST_RESOURCES_DIR) -name '*.c'))
 else
-REST_RESOURCES_FILES = $(notdir $(shell find $(REST_RESOURCES_DIR) -name '*.c' ! -name 'res-plugtest*'))
+REST_RESOURCES_FILES = $(notdir $(shell find $(REST_RESOURCES_DIR) -name '*.c'))
 endif
 endif
 
