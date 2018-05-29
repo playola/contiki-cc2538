@@ -2,6 +2,8 @@ all: coap-server
 
 CONTIKI = ../..
 
+CFLAGS += -DPROJECT_CONF_H=\"project-conf.h\"
+
 # Automatically build RESTful resources
 REST_RESOURCES_DIR = ./resources
 ifndef TARGET

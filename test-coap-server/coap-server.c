@@ -28,7 +28,9 @@
 #define PRINTLLADDR(addr)
 #endif
 
-extern resource_t res_event;
+extern resource_t
+  res_event,
+  res_separate;
 #if PLATFORM_HAS_LEDS
   extern resource_t res_toggle;
 #endif
