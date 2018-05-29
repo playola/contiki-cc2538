@@ -1,4 +1,4 @@
-all: coap-server
+all: example-coap-server
 
 CONTIKI = ../..
 
@@ -45,6 +45,3 @@ $(CONTIKI)/tools/tunslip6:	$(CONTIKI)/tools/tunslip6.c
 
 connect-router:	$(CONTIKI)/tools/tunslip6
 	sudo $(CONTIKI)/tools/tunslip6 fd00::1/64
-
-connect-minimal:
-	sudo ip address add fdfd::1/64 dev tap0

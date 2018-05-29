@@ -3,7 +3,7 @@
 * Date: May 2018
 *
 * Resource toggle
-* [...]
+* Toggle a red LED
 */
 
 #include "contiki.h"
@@ -23,8 +23,7 @@
            NULL,
            NULL);
 
-  static void
-  res_post_handler(void *request, void *response, uint8_t *buffer, uint16_t preferred_size, int32_t *offset) {
+  static void res_post_handler(void *request, void *response, uint8_t *buffer, uint16_t preferred_size, int32_t *offset) {
     leds_toggle(LEDS_RED);
   }
 #endif

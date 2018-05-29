@@ -2,7 +2,7 @@
 * Author: Pol Layola
 * Date: May 2018
 *
-* Test Sleep Mode
+* Example Sleep Mode
 * Functionalities to Configure Interrupts and Sleep Mode for CC2538.
 *   @function   configureSleepMode    @return void
 *   @function   enableSleepMode       @return void
@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include "contiki.h"
 #include "gpio.h"
-#include "dev/pressure-sensor.h"
+#include "dev/example-sensor.h"
 
 #define SENSOR_GPIO  GPIO_C_BASE  /* Port Base C */
 #define SENSOR_MASK  0x01         /* GPIO pin 0 */

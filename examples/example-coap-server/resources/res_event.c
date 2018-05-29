@@ -3,7 +3,7 @@
 * Date: May 2018
 *
 * Resource event
-* [...]
+* Event that sends a message when we click on a button or sensor.
 */
 
 #include <string.h>

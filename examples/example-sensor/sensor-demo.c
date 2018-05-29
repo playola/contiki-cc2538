@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 #include "contiki.h"
-#include "test-sensor.h"
+#include "example-sensor.h"
 
 /*-------------------------------------------------------*/
 PROCESS(sensor_demo_process, "Sensor demo process");

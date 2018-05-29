@@ -2,7 +2,7 @@
 * Author: Pol Layola
 * Date: May 2018
 *
-* Test Sensor
+* Example Sensor
 * Functionalities to Configure and Read a digital pin from CC2538.
 *   @function   configurePins   @return void
 *   @function   getSensorValue  @return unsigned char
@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include "contiki.h"
 #include "gpio.h"
-#include "dev/test-sensor.h"
+#include "dev/example-sensor.h"
 
 #define SENSOR_GPIO  GPIO_C_BASE  /* Port Base C */
 #define SENSOR_MASK  0x01         /* GPIO pin 0 */
