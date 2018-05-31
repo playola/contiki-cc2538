@@ -19,7 +19,9 @@ extern resource_t
 /*-------------------------------------------------------*/
 PROCESS(er_example_server, "Erbium CoAP Server");
 AUTOSTART_PROCESSES(&er_example_server);
-
+/*-------------------------------------------------------*/
+static struct etimer et;
+/*-------------------------------------------------------*/
 PROCESS_THREAD(er_example_server, ev, data) {
   PROCESS_BEGIN();
 
@@ -36,9 +38,9 @@ PROCESS_THREAD(er_example_server, ev, data) {
   #endif
 
   rest_init_engine();
-  rest_activate_resource(&res_event, "sensors/pressure");
+  rest_activate_resource(&res_sensor, "sensors/pressure");
 
-  configurePins(); /* Configure pins to read sensor value */
+  sensor.configurePins(); /* Configure pins to read sensor value */
 
   printf("**** Erbium CoAP Server started :)");
 
@@ -47,7 +49,7 @@ PROCESS_THREAD(er_example_server, ev, data) {
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
 
     printf("**** Triggering event sensor ****\n");
-    res_event.trigger();
+    res_sensor.trigger();
   }
 
   PROCESS_END();
