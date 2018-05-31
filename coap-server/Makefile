@@ -1,4 +1,4 @@
-all: example-coap-server
+all: coap-server
 
 CONTIKI = ../..
 

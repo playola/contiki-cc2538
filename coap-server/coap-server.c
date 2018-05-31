@@ -16,12 +16,12 @@
 /*-------------------------------------------------------*/
 extern resource_t res_sensor;
 /*-------------------------------------------------------*/
-PROCESS(er_example_server, "Erbium CoAP Server");
-AUTOSTART_PROCESSES(&er_example_server);
+PROCESS(coap_server, "Erbium CoAP Server");
+AUTOSTART_PROCESSES(&coap_server);
 /*-------------------------------------------------------*/
 static struct etimer et;
 /*-------------------------------------------------------*/
-PROCESS_THREAD(er_example_server, ev, data) {
+PROCESS_THREAD(coap_server, ev, data) {
   PROCESS_BEGIN();
 
   PROCESS_PAUSE();

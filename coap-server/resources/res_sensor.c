@@ -20,15 +20,15 @@ static void res_get_handler(
   int32_t *offset
 );
 /*-------------------------------------------------------*/
-static void res_event_handler(void);
+static void res_sensor_handler(void);
 /*-------------------------------------------------------*/
-EVENT_RESOURCE(res_event,
+EVENT_RESOURCE(res_sensor,
                "title=\"Event sensor\";obs",
                res_get_handler,
                NULL,
                NULL,
                NULL,
-               res_event_handler);
+               res_sensor_handler);
 /*-------------------------------------------------------*/
 static void res_get_handler(
   void *request,
@@ -37,17 +37,17 @@ static void res_get_handler(
   uint16_t preferred_size,
   int32_t *offset
 ) {
-  unsigned char sensorValue = 0;
+  char sensorValue = 0;
   sensorValue = getSensorValue();
   printf("Sensor value set to: %u", sensorValue);
   REST.set_header_content_type(response, REST.type.TEXT_PLAIN);
   REST.set_response_payload(response, buffer, snprintf((char *)buffer, preferred_size, sensorValue));
 }
 /*-------------------------------------------------------*/
-static void res_event_handler(void) {
+static void res_sensor_handler(void) {
   if(1) {
     printf("Sending sensor value");
-    REST.notify_subscribers(&res_event);
+    REST.notify_subscribers(&res_sensor);
   }
 }
 /*-------------------------------------------------------*/
