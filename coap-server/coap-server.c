@@ -12,10 +12,9 @@
 #include "contiki.h"
 #include "contiki-net.h"
 #include "rest-engine.h"
+#include "libraries/sensor.h"
 /*-------------------------------------------------------*/
-extern resource_t
-  res_sensor,
-  sensor;
+extern resource_t res_sensor;
 /*-------------------------------------------------------*/
 PROCESS(er_example_server, "Erbium CoAP Server");
 AUTOSTART_PROCESSES(&er_example_server);
@@ -40,7 +39,7 @@ PROCESS_THREAD(er_example_server, ev, data) {
   rest_init_engine();
   rest_activate_resource(&res_sensor, "sensors/pressure");
 
-  sensor.configurePins(); /* Configure pins to read sensor value */
+  configurePins(); /* Configure pins to read sensor value */
 
   printf("**** Erbium CoAP Server started :)");
 
