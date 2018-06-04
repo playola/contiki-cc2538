@@ -18,16 +18,16 @@ server.on('request', function(req, res) {
 })
 
 server.listen(function() {
-  var coapObserve = {
+  var req = coap.request({
     host: 'COAP_IP',
     pathname: '/sensors/pressure',
     observe: true,
     method: 'GET'
-  };
-  var req = coap.request(coapObserve);
+  });
 
   req.on('response', function(res) {
     var response = res.pipe(process.stdout);
+    console.log('response ', response);
     updateDatabase(response);
   })
 
@@ -35,20 +35,14 @@ server.listen(function() {
 });
 
 function updateDatabase(response) {
-  console.log('response ', response);
-  var coapPost = {
+  var req = coap.request({
     host: 'coap.thethings.io',
     pathname: '/v2/things/tokenID',
     method: 'POST'
-  };
-  var req = coap.request(coapPost);
-  var payload = {
-    values: [{
-      key: "demo_resource",
-      value:response
-    }]
-  };
-  req.write(JSON.stringify(payload));
+  });
+
+  req.write({"values":[{"key":"demo_resource","value":response}]});
+
   req.on('response', function(res) {
     var response = res.pipe(process.stdout);
     console.log('thethings response: ', response);
