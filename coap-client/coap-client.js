@@ -17,19 +17,15 @@ server.on('request', function(req, res) {
   res.end('Starting CoAP Client \n')
 })
 
+var options = {
+  observe: true
+};
 server.listen(function() {
-  var req = coap.request({
-    host: 'coap://[COAP_IP]/sensors/pressure',
-    observe: true
-  });
+  var req = coap.request('coap://[COAP_IP]/sensors/pressure', options);
 
   req.on('response', function(res) {
-    console.log('res ', res)
-    res.pipe(process.stdout)
-    res.on('end', function() {
-      console.log('Stopping CoAP Client');
-      process.exit(0)
-    })
+    var response = res.pipe(process.stdout);
+    console.log('response: ', response);
   })
 
   req.end()
