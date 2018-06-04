@@ -1,32 +1,32 @@
-// Node Coap Client
-const coap = require("node-coap-client").CoapClient;
+/*
+* NodeJs CoAP Client
+*
+* Installation: npm install coap --save
+* Default port 5683. Default action 'GET'
+*
+* References: https://github.com/mcollina/node-coap
+*/
+const coap = require('coap');
+const server = coap.createServer({ type: 'udp6' });
 
-const observeOptions = {
-  resource: 'coap://[COAP_IP]:5683/sensors/pressure',
-  method: 'get',
-  callback: () => console.log("callback method"),
-  payload: [],
-  options: []
-}
-const { resource, method, callback, payload, options } = observeOptions;
+server.on('request', (req, res) => {
+  res.end('Starting CoAP Client \n')
+})
 
-coap.observe(resource, method, callback, payload, options)
-  .then(payload => {
-    console.log("Observe success ", payload);
+server.listen(() => {
+  const req = coap.request({
+    host: 'coap://[COAP_IP]/sensors/pressure',
+    observe: true
   });
-  .catch(err => {
-    console.log("Observe fail ", err)
-  });
 
+  req.on('response', (res) => {
+    console.log("res ", res)
+    res.pipe(process.stdout)
+    res.on('end', () => {
+      console.log("Stopping CoAP Client");
+      process.exit(0)
+    })
+  })
 
-// NodeJs Child Process
-const { exec } = require('child_process');
-
-exec('coap get coap://[COAP_IP]:5638/sensors/pressure --observe', (error, stdout, stderr) => {
-  if (error) {
-    console.error(`exec error: ${error}`);
-    return;
-  }
-  console.log(`stdout: ${stdout}`);
-  console.log(`stderr: ${stderr}`);
+  req.end()
 });
