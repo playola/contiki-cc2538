@@ -1,29 +1,33 @@
 /*
-* NodeJs CoAP Client
+* Author: Pol Layola
+* Date: May 2018
+*
+* CoAP Client
+* Client that observe a sensor and prints its value.
 *
 * Installation: npm install coap --save
-* Default port 5683. Default action 'GET'
+* Default port 5638. Default action 'GET'
 *
 * References: https://github.com/mcollina/node-coap
 */
-const coap = require('coap');
-const server = coap.createServer({ type: 'udp6' });
+var coap = require('coap');
+var server = coap.createServer({ type: 'udp6' });
 
-server.on('request', (req, res) => {
+server.on('request', function(req, res) {
   res.end('Starting CoAP Client \n')
 })
 
-server.listen(() => {
-  const req = coap.request({
+server.listen(function() {
+  var req = coap.request({
     host: 'coap://[COAP_IP]/sensors/pressure',
     observe: true
   });
 
-  req.on('response', (res) => {
-    console.log("res ", res)
+  req.on('response', function(res) {
+    console.log('res ', res)
     res.pipe(process.stdout)
-    res.on('end', () => {
-      console.log("Stopping CoAP Client");
+    res.on('end', function() {
+      console.log('Stopping CoAP Client');
       process.exit(0)
     })
   })
