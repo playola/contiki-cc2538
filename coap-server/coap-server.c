@@ -41,7 +41,7 @@ PROCESS_THREAD(coap_server, ev, data) {
 
   configurePins(); /* Configure pins to read sensor value */
 
-  printf("**** Erbium CoAP Server started :)\n");
+  printf("**** Erbium CoAP Server started ****\n");
 
   while(1) {
     etimer_set(&et, CLOCK_SECOND);
