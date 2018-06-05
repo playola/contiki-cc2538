@@ -27,7 +27,6 @@ server.listen(function() {
 
   req.on('response', function(res) {
     var response = res.pipe(process.stdout);
-    console.log('response ', response);
     updateDatabase(response);
   })
 
@@ -37,11 +36,18 @@ server.listen(function() {
 function updateDatabase(response) {
   var req = coap.request({
     host: 'coap.thethings.io',
-    pathname: '/v2/things/tokenID',
+    pathname: '/v2/things/TOKEN_ID',
     method: 'POST'
   });
-
-  req.write({"values":[{"key":"demo_resource","value":response}]});
+  console.log('response ', response);
+  console.log('response typeof ', typeof(response));
+  var payload = {
+    values: [{
+      key: "demo_resource",
+      value: response
+    }]
+  };
+  req.write(JSON.stringify(payload));
 
   req.on('response', function(res) {
     var response = res.pipe(process.stdout);
