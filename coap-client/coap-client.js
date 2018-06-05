@@ -40,7 +40,6 @@ function updateDatabase(response) {
     method: 'POST'
   });
   console.log('response ', response);
-  console.log('response typeof ', typeof(response));
   var payload = {
     values: [{
       key: "demo_resource",

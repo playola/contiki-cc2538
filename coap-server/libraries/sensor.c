@@ -27,9 +27,9 @@ void configurePins(void)
 /*
 * Read sensor from a GPIO
 */
-unsigned char getSensorValue(void)
+uint8_t getSensorValue(void)
 {
-  char sensorValue = 0;
+  uint8_t sensorValue = 0;
   return sensorValue = GPIO_READ_PIN(SENSOR_GPIO, SENSOR_MASK);
 }
 /*-------------------------------------------------------*/

@@ -28,7 +28,7 @@ PROCESS_THREAD(coap_server, ev, data) {
 
   printf("Starting Erbium CoAP Server\n");
 
-  printf("**** Setting IEEE 802.15.4 parameters ****");
+  printf("**** Setting IEEE 802.15.4 parameters ****\n");
   #ifdef RF_CHANNEL
     printf("RF channel: %u\n", RF_CHANNEL);
   #endif
@@ -41,7 +41,7 @@ PROCESS_THREAD(coap_server, ev, data) {
 
   configurePins(); /* Configure pins to read sensor value */
 
-  printf("**** Erbium CoAP Server started :)");
+  printf("**** Erbium CoAP Server started :)\n");
 
   while(1) {
     etimer_set(&et, CLOCK_SECOND);
