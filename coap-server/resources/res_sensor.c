@@ -41,12 +41,11 @@ static void res_get_handler(
   sensorValue = getSensorValue();
   printf("Sensor value set to: %u \n", sensorValue);
   REST.set_header_content_type(response, REST.type.TEXT_PLAIN);
-  REST.set_response_payload(response, buffer, snprintf((char *)buffer, preferred_size, sensorValue));
+  REST.set_response_payload(response, buffer, snprintf((char *)buffer, preferred_size, "%u", sensorValue));
 }
 /*-------------------------------------------------------*/
 static void res_sensor_handler(void) {
   if(1) {
-    printf("Sending sensor value");
     REST.notify_subscribers(&res_sensor);
   }
 }

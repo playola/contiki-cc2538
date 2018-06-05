@@ -47,7 +47,6 @@ PROCESS_THREAD(coap_server, ev, data) {
     etimer_set(&et, CLOCK_SECOND);
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
 
-    printf("**** Triggering event sensor ****\n");
     res_sensor.trigger();
   }
 
