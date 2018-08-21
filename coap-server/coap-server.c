@@ -12,11 +12,7 @@
 #include "contiki.h"
 #include "contiki-net.h"
 #include "rest-engine.h"
-#include "gpio.h"
 #include "libraries/sensor.h"
-
-#define SENSOR_PORT   GPIO_C_BASE  /* Port Base C */
-#define SENSOR_MASK   0x01         /* GPIO pin 0 */
 
 /*-------------------------------------------------------*/
 extern resource_t res_sensor;
@@ -57,7 +53,6 @@ PROCESS_THREAD(coap_server, ev, data) {
   while(1) {
     etimer_set(&et, CLOCK_SECOND);
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
-    gpio_register_callback(printf("interrupt done coap-server"), SENSOR_PORT, SENSOR_MASK);
     res_sensor.trigger();
   }
 
