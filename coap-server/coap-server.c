@@ -15,6 +15,7 @@
 #include "gpio.h"
 #include "ioc.h"
 #include "libraries/sensor.h"
+#include "libraries/sleep-mode.h"
 
 #define SENSOR_PORT       0             /* Port 0*/
 #define SENSOR_PORT_BASE  GPIO_C_BASE   /* Base C */
@@ -27,7 +28,7 @@ AUTOSTART_PROCESSES(&coap_server);
 /*-------------------------------------------------------*/
 static struct etimer et;
 /*-------------------------------------------------------*/
-void interruptCallback(void) {
+static void interruptCallback(uint8_t port, uint8_t pin) {
   printf("interrupt callback \n");
   res_sensor.trigger();
 }
@@ -52,20 +53,17 @@ PROCESS_THREAD(coap_server, ev, data) {
 
   configurePins(); /* Configure pins to read sensor value */
 
-  /* Sleep mode and interrupts */
-  configureSleepMode();
-  enableSleepMode();
-  disableSleepMode();
+  /* Interrupts */
   configureInterrupts();
-
-  ioc_set_over(SENSOR_PORT_BASE, SENSOR_PORT, IOC_OVERRIDE_PDE);
-  gpio_register_callback(interruptCallback, SENSOR_PORT_BASE, SENSOR_PORT);
 
   printf("**** Erbium CoAP Server started ****\n");
 
   while(1) {
     etimer_set(&et, CLOCK_SECOND);
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
+
+    ioc_set_over(SENSOR_PORT_BASE, SENSOR_PORT, IOC_OVERRIDE_PDE);
+    gpio_register_callback(interruptCallback, SENSOR_PORT_BASE, SENSOR_PORT);
   }
 
   PROCESS_END();

@@ -9,9 +9,6 @@
 #ifndef SLEEP_MODE_H
 #define SLEEP_MODE_H
 
-void configureSleepMode(void);
-void enableSleepMode(void);
-void disableSleepMode(void);
 void configureInterrupts(void);
 
 #endif /* SLEEP_MODE_H */

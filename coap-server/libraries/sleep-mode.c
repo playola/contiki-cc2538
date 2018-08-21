@@ -22,6 +22,10 @@
 /* Configure and initialize wake up interrupt */
 void configureInterrupts(void) {
   printf("Configure interrupts\n");
+
+  /* Clear interrupts */
+  GPIO_CLEAR_INTERRUPT(SENSOR_PORT_BASE, SENSOR_MASK);
+
   /* Enable edge detection */
   GPIO_DETECT_EDGE(SENSOR_PORT_BASE, SENSOR_MASK);
 
