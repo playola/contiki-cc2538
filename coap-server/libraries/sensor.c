@@ -1,9 +1,9 @@
 /*
 * Author: Pol Layola
-* Date: May 2018
+* Date: May-August 2018
 *
 * Sensor
-* Functionalities to Configure and Read a digital pin from CC2538.
+* Configure and Read a digital pin from CC2538.
 *   @function   configurePins   @return void
 *   @function   getSensorValue  @return unsigned char
 */
@@ -19,16 +19,14 @@
 /*
 * Configure GPIO
 */
-void configurePins(void)
-{
+void configurePins(void) {
   GPIO_SET_INPUT(SENSOR_GPIO, SENSOR_MASK);
 }
 /*-------------------------------------------------------*/
 /*
 * Read sensor from a GPIO
 */
-unsigned char getSensorValue(void)
-{
+unsigned char getSensorValue(void) {
   char sensorValue = 0;
   return sensorValue = GPIO_READ_PIN(SENSOR_GPIO, SENSOR_MASK);
 }

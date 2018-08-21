@@ -41,6 +41,12 @@ PROCESS_THREAD(coap_server, ev, data) {
 
   configurePins(); /* Configure pins to read sensor value */
 
+  /* Sleep mode and interrupts */
+  configureSleepMode();
+  enableSleepMode();
+  disableSleepMode();
+  configureInterrupts();
+
   printf("**** Erbium CoAP Server started ****\n");
 
   while(1) {
