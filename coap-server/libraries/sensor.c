@@ -12,15 +12,19 @@
 #include "contiki.h"
 #include "gpio.h"
 
-#define SENSOR_GPIO  GPIO_C_BASE  /* Port Base C */
+#define SENSOR_PORT  GPIO_C_BASE  /* Port Base C */
 #define SENSOR_MASK  0x01         /* GPIO pin 0 */
 
 /*-------------------------------------------------------*/
 /*
-* Configure GPIO
+* Configure GPIO pin
 */
 void configurePins(void) {
-  GPIO_SET_INPUT(SENSOR_GPIO, SENSOR_MASK);
+  /* Software controlled */
+  GPIO_SOFTWARE_CONTROL(SENSOR_PORT, SENSOR_MASK);
+
+  /* Set pin to input */
+  GPIO_SET_INPUT(SENSOR_PORT, SENSOR_MASK);
 }
 /*-------------------------------------------------------*/
 /*
@@ -28,6 +32,6 @@ void configurePins(void) {
 */
 unsigned char getSensorValue(void) {
   char sensorValue = 0;
-  return sensorValue = GPIO_READ_PIN(SENSOR_GPIO, SENSOR_MASK);
+  return sensorValue = GPIO_READ_PIN(SENSOR_PORT, SENSOR_MASK);
 }
 /*-------------------------------------------------------*/
