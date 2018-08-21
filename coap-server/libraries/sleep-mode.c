@@ -18,20 +18,6 @@
 #define SENSOR_PORT_BASE  GPIO_C_BASE   /* Base C */
 #define SENSOR_MASK       0x01          /* GPIO pin 0 */
 
-/* Configure and initialize sleep mode */
-void configureSleepMode(void) {
-  printf("Configure Default Sleep Mode\n");
-}
-/*-------------------------------------------------------*/
-/* Enable sleep mode */
-void enableSleepMode(void) {
-  printf("Enabling Sleep Mode\n");
-}
-/*-------------------------------------------------------*/
-/* Disable sleep mode */
-void disableSleepMode(void) {
-  printf("Disable Sleep Mode\n");
-}
 /*-------------------------------------------------------*/
 /* Configure and initialize wake up interrupt */
 void configureInterrupts(void) {
@@ -44,7 +30,7 @@ void configureInterrupts(void) {
 
   /* Trigger interrupt on Falling edge */
   GPIO_POWER_UP_ON_FALLING(SENSOR_PORT, SENSOR_MASK);
-  GPIO_DETECT_RISING(SENSOR_PORT_BASE, SENSOR_MASK);
+  GPIO_DETECT_FALLING(SENSOR_PORT_BASE, SENSOR_MASK);
 
   /* Enable power-up interrupt triggering */
   GPIO_ENABLE_INTERRUPT(SENSOR_PORT_BASE, SENSOR_MASK);

@@ -10,11 +10,7 @@
 #include <string.h>
 #include "rest-engine.h"
 #include "er-coap.h"
-#include "gpio.h"
 #include "libraries/sensor.h"
-
-#define SENSOR_PORT       0             /* Port 0*/
-#define SENSOR_PORT_BASE  GPIO_C_BASE   /* Base C */
 
 /*-------------------------------------------------------*/
 static void res_get_handler(
@@ -50,9 +46,9 @@ static void res_get_handler(
 }
 /*-------------------------------------------------------*/
 static void res_sensor_handler(void) {
-  gpio_register_callback(printf("interrupt done \n"), SENSOR_PORT_BASE, SENSOR_PORT);
-  /*if(1) {
+  if(1) {
+    printf("notify subscribers \n");
     REST.notify_subscribers(&res_sensor);
-  }*/
+  }
 }
 /*-------------------------------------------------------*/

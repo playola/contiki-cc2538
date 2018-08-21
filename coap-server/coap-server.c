@@ -12,7 +12,12 @@
 #include "contiki.h"
 #include "contiki-net.h"
 #include "rest-engine.h"
+#include "gpio.h"
+#include "ioc.h"
 #include "libraries/sensor.h"
+
+#define SENSOR_PORT       0             /* Port 0*/
+#define SENSOR_PORT_BASE  GPIO_C_BASE   /* Base C */
 
 /*-------------------------------------------------------*/
 extern resource_t res_sensor;
@@ -21,6 +26,11 @@ PROCESS(coap_server, "Erbium CoAP Server");
 AUTOSTART_PROCESSES(&coap_server);
 /*-------------------------------------------------------*/
 static struct etimer et;
+/*-------------------------------------------------------*/
+void interruptCallback(void) {
+  printf("interrupt callback \n");
+  res_sensor.trigger();
+}
 /*-------------------------------------------------------*/
 PROCESS_THREAD(coap_server, ev, data) {
   PROCESS_BEGIN();
@@ -48,12 +58,14 @@ PROCESS_THREAD(coap_server, ev, data) {
   disableSleepMode();
   configureInterrupts();
 
+  ioc_set_over(SENSOR_PORT_BASE, SENSOR_PORT, IOC_OVERRIDE_PDE);
+  gpio_register_callback(interruptCallback, SENSOR_PORT_BASE, SENSOR_PORT);
+
   printf("**** Erbium CoAP Server started ****\n");
 
   while(1) {
     etimer_set(&et, CLOCK_SECOND);
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
-    res_sensor.trigger();
   }
 
   PROCESS_END();
