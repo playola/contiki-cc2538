@@ -17,9 +17,8 @@
 #include "libraries/sensor.h"
 #include "libraries/sleep-mode.h"
 
-#define SENSOR_PORT       0             /* Port 0*/
-#define SENSOR_PORT_BASE  GPIO_C_BASE   /* Base C */
-
+#define SENSOR_PIN    0             /* Pin 0 */
+#define SENSOR_PORT   GPIO_C_NUM    /* Port C */
 /*-------------------------------------------------------*/
 extern resource_t res_sensor;
 /*-------------------------------------------------------*/
@@ -28,7 +27,7 @@ AUTOSTART_PROCESSES(&coap_server);
 /*-------------------------------------------------------*/
 static struct etimer et;
 /*-------------------------------------------------------*/
-static void interruptCallback(uint8_t port, uint8_t pin) {
+gpio_callback_t interruptCallback(uint8_t port, uint8_t pin) {
   printf("interrupt callback \n");
   res_sensor.trigger();
 }
@@ -62,8 +61,8 @@ PROCESS_THREAD(coap_server, ev, data) {
     etimer_set(&et, CLOCK_SECOND);
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
 
-    ioc_set_over(SENSOR_PORT_BASE, SENSOR_PORT, IOC_OVERRIDE_PDE);
-    gpio_register_callback(interruptCallback, SENSOR_PORT_BASE, SENSOR_PORT);
+    ioc_set_over(SENSOR_PORT, SENSOR_PIN, IOC_OVERRIDE_PDE);
+    gpio_register_callback(interruptCallback, SENSOR_PORT, SENSOR_PIN);
   }
 
   PROCESS_END();
