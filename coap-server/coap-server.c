@@ -17,8 +17,9 @@
 #include "libraries/sensor.h"
 #include "libraries/interrupts.h"
 
-#define SENSOR_PIN    0             /* Pin 0 */
-#define SENSOR_PORT   GPIO_C_NUM    /* Port C */
+#define SENSOR_PIN            0             /* Pin 0 */
+#define SENSOR_PORT           GPIO_C_NUM    /* Port C */
+#define NVIC_INT_GPIO_PORT_C  2            /* Vector port */
 /*-------------------------------------------------------*/
 extern resource_t res_sensor;
 /*-------------------------------------------------------*/
@@ -27,7 +28,7 @@ AUTOSTART_PROCESSES(&coap_server);
 /*-------------------------------------------------------*/
 static struct etimer et;
 /*-------------------------------------------------------*/
-gpio_callback_t interruptCallback(uint8_t port, uint8_t pin) {
+static void interruptCallback(uint8_t port, uint8_t pin) {
   printf("interrupt callback \n");
   res_sensor.trigger();
 }
