@@ -15,7 +15,7 @@
 #include "gpio.h"
 #include "ioc.h"
 #include "libraries/sensor.h"
-#include "libraries/sleep-mode.h"
+#include "libraries/interrupts.h"
 
 #define SENSOR_PIN    0             /* Pin 0 */
 #define SENSOR_PORT   GPIO_C_NUM    /* Port C */
@@ -62,6 +62,7 @@ PROCESS_THREAD(coap_server, ev, data) {
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
 
     ioc_set_over(SENSOR_PORT, SENSOR_PIN, IOC_OVERRIDE_PDE);
+    NVIC_EnableIRQ(NVIC_INT_GPIO_PORT_C);
     gpio_register_callback(interruptCallback, SENSOR_PORT, SENSOR_PIN);
   }
 

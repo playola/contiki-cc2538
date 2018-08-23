@@ -2,8 +2,8 @@
 * Author: Pol Layola
 * Date: May-August 2018
 *
-* Sensor
-* Library with functionalities of sleep mode and interrupts from CC2538.
+* Interrupts
+* Library with interrupts functionalities from CC2538.
 */
 
 #ifndef SLEEP_MODE_H
