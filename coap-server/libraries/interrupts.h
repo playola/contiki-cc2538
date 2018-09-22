@@ -1,6 +1,6 @@
 /*
 * Author: Pol Layola
-* Date: May-August 2018
+* Date: October 2018
 *
 * Interrupts
 * Library with interrupts functionalities from CC2538.

@@ -1,6 +1,6 @@
 /*
 * Author: Pol Layola
-* Date: May 2018
+* Date: October 2018
 *
 * Resource sensor
 * Event that sends sensor paylod when the event is triggered.
@@ -47,7 +47,6 @@ static void res_get_handler(
 /*-------------------------------------------------------*/
 static void res_sensor_handler(void) {
   if(1) {
-    printf("notify subscribers \n");
     REST.notify_subscribers(&res_sensor);
   }
 }

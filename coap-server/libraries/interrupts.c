@@ -1,12 +1,9 @@
 /*
 * Author: Pol Layola
-* Date: May-August 2018
+* Date: October 2018
 *
 * Interrupts
 * Configure Interrupts and Sleep Mode for CC2538.
-*   @function   configureSleepMode    @return void
-*   @function   enableSleepMode       @return void
-*   @function   disableSleepMode      @return void
 *   @function   configureInterrupts   @return void
 */
 
@@ -15,16 +12,13 @@
 #include "gpio.h"
 
 #define SENSOR_PIN    0             /* Pin 0 */
-#define SENSOR_PORT   GPIO_C_NUM    /* Port C */
+#define SENSOR_PORT   GPIO_C_BASE    /* Port C */
 #define SENSOR_MASK   0x01          /* Port mask */
 
 /*-------------------------------------------------------*/
 /* Configure and initialize wake up interrupt */
 void configureInterrupts(void) {
   printf("Configure interrupts\n");
-
-  /* Clear interrupts */
-  //GPIO_CLEAR_INTERRUPT(SENSOR_PORT, SENSOR_MASK);
 
   /* Enable edge detection */
   GPIO_DETECT_EDGE(SENSOR_PORT, SENSOR_MASK);

@@ -1,6 +1,6 @@
 /*
 * Author: Pol Layola
-* Date: May 2018
+* Date: October 2018
 *
 * CoAP Server
 * Erbium CoAP server using external libraries for read sensors, sleep mode and interrupts.
@@ -18,7 +18,7 @@
 #include "libraries/interrupts.h"
 
 #define SENSOR_PIN            0             /* Pin 0 */
-#define SENSOR_PORT           GPIO_C_NUM    /* Port C */
+#define SENSOR_PORT           GPIO_C_BASE    /* Port C */
 #define NVIC_INT_GPIO_PORT_C  2            /* Vector port */
 /*-------------------------------------------------------*/
 extern resource_t res_sensor;
@@ -61,10 +61,10 @@ PROCESS_THREAD(coap_server, ev, data) {
   while(1) {
     etimer_set(&et, CLOCK_SECOND);
     PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&et));
-
-    ioc_set_over(SENSOR_PORT, SENSOR_PIN, IOC_OVERRIDE_PDE);
+    res_sensor.trigger();
+    /*ioc_set_over(SENSOR_PORT, SENSOR_PIN, IOC_OVERRIDE_PDE);
     NVIC_EnableIRQ(NVIC_INT_GPIO_PORT_C);
-    gpio_register_callback(interruptCallback, SENSOR_PORT, SENSOR_PIN);
+    gpio_register_callback(interruptCallback, SENSOR_PORT, SENSOR_PIN);*/
   }
 
   PROCESS_END();

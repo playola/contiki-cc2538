@@ -1,6 +1,6 @@
 /*
 * Author: Pol Layola
-* Date: May-August 2018
+* Date: October 2018
 *
 * Sensor
 * Configure and Read a digital pin from CC2538.
@@ -12,7 +12,7 @@
 #include "contiki.h"
 #include "gpio.h"
 
-#define SENSOR_PORT   GPIO_C_NUM    /* Port C */
+#define SENSOR_PORT   GPIO_C_BASE    /* Port C */
 #define SENSOR_MASK   0x01          /* Port mask */
 /*-------------------------------------------------------*/
 /*

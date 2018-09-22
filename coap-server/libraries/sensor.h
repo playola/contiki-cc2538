@@ -1,6 +1,6 @@
 /*
 * Author: Pol Layola
-* Date: May-August 2018
+* Date: October 2018
 *
 * Sensor
 * Library with functionalities to Configure and Read a digital pin from CC2538.

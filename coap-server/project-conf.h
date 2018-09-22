@@ -1,6 +1,6 @@
 /*
 * Author: Pol Layola
-* Date: May 2018
+* Date: October 2018
 *
 * Project conf
 * Library with configuration for CC2538 pins, 802.15.4 network and CoAP.
